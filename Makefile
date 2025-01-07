@@ -6,6 +6,35 @@ DOCKER_REGISTRY := your-docker-registry # Replace with actual registry
 K8S_NAMESPACE := appointment-system
 ENV_FILE := .env
 
+# make BRANCH="set-branch-here" pull-from-all-subtrees
+pull-from-all-subtrees:
+	@$(MAKE) pull-from-backend-subtree BRANCH=$(BRANCH)
+	@$(MAKE) pull-from-frontend-subtree BRANCH=$(BRANCH)
+	@$(MAKE) pull-from-cache-database-subtree BRANCH=$(BRANCH)
+	@$(MAKE) pull-from-content-database-subtree BRANCH=$(BRANCH)
+	@$(MAKE) pull-from-transaction-database-subtree BRANCH=$(BRANCH)
+
+# make BRANCH="set-branch-here" pull-from-backend-subtree
+pull-from-backend-subtree:
+	git subtree pull --prefix=user-facing-backend/Express-Typescipt origin $(BRANCH) --squash
+
+# make BRANCH="set-branch-here" pull-from-frontend-subtree
+pull-from-frontend-subtree:
+	git subtree pull --prefix=user-facing-frontend/React-Typescipt origin $(BRANCH) --squash
+
+# make BRANCH="set-branch-here" pull-from-cache-database-subtree
+pull-from-cache-database-subtree:
+	git subtree pull --prefix=databases/cache-database/Redis-IOredis-Typescript origin $(BRANCH) --squash
+
+# make BRANCH="set-branch-here" pull-from-content-database-subtree
+pull-from-content-database-subtree:
+	git subtree pull --prefix=databases/content-database/Mongodb-Mongoose-Typescript origin $(BRANCH) --squash
+
+# make BRANCH="set-branch-here" pull-from-transaction-database-subtree
+pull-from-transaction-database-subtree:
+	git subtree pull --prefix=databases/transactions-database/Mysql-TypeORM-Typescript origin $(BRANCH) --squash
+
+
 # make BRANCH="set-branch-here" push-to-all-subtrees 
 push-to-all-subtrees:
 	@$(MAKE) push-to-transaction-database-subtree BRANCH=$(BRANCH)
