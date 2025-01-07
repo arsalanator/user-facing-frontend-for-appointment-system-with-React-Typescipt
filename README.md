@@ -1,2 +1,2 @@
-# content-database-for-appointment-system-with-Mongodb-Mongoose-Typescript
-This is Mongodb database for content available at "appointment system" application being written in Mongodb, Mongoose Typescript
+# appointment-system
+This is an application that allows users to create appointments and doctors to create available appointment slots
