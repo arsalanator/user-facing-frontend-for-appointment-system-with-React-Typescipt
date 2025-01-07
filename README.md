@@ -1,2 +1,2 @@
-# user-facing-backend-for-appointment-system-with-Express-Typescipt
-This is backend for "appointment system" application being written in Express, Typescript
+# appointment-system
+This is an application that allows users to create appointments and doctors to create available appointment slots
