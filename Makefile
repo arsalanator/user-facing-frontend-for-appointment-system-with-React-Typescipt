@@ -6,6 +6,43 @@ DOCKER_REGISTRY := your-docker-registry # Replace with actual registry
 K8S_NAMESPACE := appointment-system
 ENV_FILE := .env
 
+# make BRANCH="set-branch-here" push-to-all-subtrees 
+push-to-all-subtrees:
+	@$(MAKE) push-to-transaction-database-subtree BRANCH=$(BRANCH)
+	@$(MAKE) push-to-content-database-subtree BRANCH=$(BRANCH)
+	@$(MAKE) push-to-cache-database-subtree BRANCH=$(BRANCH)
+	@$(MAKE) push-to-backend-subtree BRANCH=$(BRANCH)
+	@$(MAKE) push-to-frontend-subtree BRANCH=$(BRANCH)
+
+# make BRANCH="set-branch-here" push-to-all-database-subtrees
+push-to-all-database-subtrees:
+	@$(MAKE) push-to-transaction-database-subtree BRANCH=$(BRANCH)
+	@$(MAKE) push-to-content-database-subtree BRANCH=$(BRANCH)
+	@$(MAKE) push-to-cache-database-subtree BRANCH=$(BRANCH)
+
+# make BRANCH="set-branch-here" push-to-user-facing-frontends-and-backends-subtrees
+push-to-user-facing-frontends-and-backends-subtrees:
+	@$(MAKE) push-to-frontend-subtree BRANCH=$(BRANCH)
+	@$(MAKE) push-to-backend-subtree BRANCH=$(BRANCH)
+
+# push-to-transaction-database-subtree
+# make BRANCH=installing-databases push-to-transaction-database-subtree
+push-to-transaction-database-subtree:
+	echo "Pushing to Subtree databases/transactions-database/Mysql-TypeORM-Typescript at branch $(BRANCH)"
+	git subtree push --prefix=databases/transactions-database/Mysql-TypeORM-Typescript https://github.com/arsalanator/transactions-database-for-appointment-system-with-Mysql-TypeORM-Typescript $(BRANCH)
+
+# push-to-content-database-subtree
+# make BRANCH=installing-databases push-to-content-database-subtree
+push-to-content-database-subtree:
+	echo "Pushing to Subtree databases/content-database/Mongodb-Mongoose-Typescript at branch $(BRANCH)"
+	git subtree push --prefix=databases/content-database/Mongodb-Mongoose-Typescript https://github.com/arsalanator/content-database-for-appointment-system-with-Mongodb-Mongoose-Typescript $(BRANCH)
+
+# push-to-cache-database-subtree
+# make BRANCH=installing-databases push-to-cache-database-subtree
+push-to-cache-database-subtree:
+	echo "Pushing to Subtree databases/cache-database/Redis-IOredis-Typescript at branch $(BRANCH)"
+	git subtree push --prefix=databases/cache-database/Redis-IOredis-Typescript https://github.com/arsalanator/cache-database-for-appointment-system-with-Redis-IOredis-Typescript $(BRANCH)
+
 # push to backend subtree
 # make BRANCH=project-bootstrapping push-to-backend-subtree
 push-to-backend-subtree:
