@@ -1,2 +1,2 @@
-# transactions-database-for-appointment-system-with-Mysql-TypeORM-Typescript
-This is database for transactional data for "appointment system" application being written using Mysql, TypeORM and Typescript
+# appointment-system
+This is an application that allows users to create appointments and doctors to create available appointment slots
