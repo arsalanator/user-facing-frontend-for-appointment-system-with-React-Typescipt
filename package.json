@@ -10,11 +10,13 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "clean-build": "rm -rf ../../user-facing-backend/Express-Typescript/public/build && mkdir -p ../../user-facing-backend/Express-Typescript/public/build",
+    "build": "npm run clean-build && react-scripts build && npm run copy-build",
+    "copy-build": "cp -r build/* ../../user-facing-backend/Express-Typescript/public/build"
   },
   "eslintConfig": {
     "extends": [
