@@ -1,2 +1,2 @@
-# user-facing-frontend-for-appointment-system-with-React-Typescipt
-This is frontend for "appointment system" application being written in React, Typescript
+# appointment-system
+This is an application that allows users to create appointments and doctors to create available appointment slots
